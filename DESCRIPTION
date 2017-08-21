@@ -1,0 +1,18 @@
+Package: mesh2D
+Type: Package
+Title: Load a 2D mesh file and display it
+Version: 0.1.0
+Author: Gabriel Preda
+Maintainer: Gabriel Preda <gabi.preda@gmail.com>
+Description: Package mesh2D loads a 2D mesh file in universal ATLAS text format and display it using plot3D package
+    In order to use the package, one will need to preinstall plot3D package
+    Usage example: 
+    ## Load the package library
+    library(mesh2D)
+    ## Read one data file; this file is provided as an example
+    dat <- readMeshFileATLAS("data//pre_geom2D.atl")
+    ## Plot the data imported using readMeshFileATLAS
+    plotMesh(dat)   
+License: 
+Encoding: UTF-8
+LazyData: true
