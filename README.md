@@ -36,7 +36,7 @@ The package includes a data file *data/pre_geom2D.atl*. This data file is used i
 
 ````
 #read the data file and populate a mesh object 'dat'
-dat <- mesh2D::readMeshFileATLAS("../../data/pre_geom2D.atl")
+dat <- mesh2D::readMeshFileATLAS("data/pre_geom2D.atl")
 #plot the mesh in a 2D polygon plot
 plotMesh(dat)
 
