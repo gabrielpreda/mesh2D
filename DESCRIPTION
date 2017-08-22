@@ -1,6 +1,6 @@
 Package: mesh2D
 Type: Package
-Title: Load a 2D mesh file and display it
+Title: Load a 2D mesh file and display it in a 2D frame
 Version: 0.1.0
 Author: Gabriel Preda
 Maintainer: Gabriel Preda <gabi.preda@gmail.com>
