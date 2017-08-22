@@ -4,47 +4,6 @@
 #   For plot uses the package plot3D, the function polygon2D
 #
 
-library(R6)
-
-cElement <- R6Class("cElement",
-                    public=list(
-                      id=NULL,
-                      type=NULL,
-                      material=NULL,
-                      nodeID=NULL,
-                      initialize = function(id, type, material, nodeID) {
-                        self$id <- id
-                        self$type <- type
-                        self$material <- material
-                        self$nodeID <- nodeID
-                      }
-                    )
-)
-cNode <-R6Class("cNode",
-                public=list(
-                  id=NULL,
-                  x=NULL,
-                  initialize = function(id, x) {
-                    self$id <- id
-                    self$x <- x
-                  }
-                )
-)
-
-# return number of vertex for an element, given the ATLAS element type
-getVertexFromTypeATLAS <- function(type) {
-  type <- as.integer(type)
-  nV <- type - (as.integer(type/100)*100)
-  return(nV)
-}
-
-#read the current line and return a vector with tokens
-getStringsFromLine <- function(crtLine) {
-  crtLine <- as.character(crtLine)
-  crtLine <- trimws(crtLine,"left")
-  crtLine <- unlist(strsplit(crtLine, split=" |[ ]+"));
-  return(crtLine)
-}
 
 # read a (2D) mesh file in ATLAS format, returns a mesh vector
 # with the structure: dim(nNodes, nElements), nodes, elements
@@ -53,16 +12,13 @@ readMeshFileATLAS <- function(fileName) {
   conn <- file(fileName,open="r")
   linn <-readLines(conn)
   cnt = 1;
-  # read the number of lines and elements
-  # crtLine <- getStringsFromLine(linn[cnt])
-  # nNodes <- as.integer(crtLine[1])
-  # nElements <- as.integer(crtLine[2])
-  # cat(sprintf("Nodes:%d, Elements: %d\n", nNodes,nElements))
 
+  #initialize the nodes and elements lists
   nodes <- list()
   elements <- list()
-  crtLine <- getStringsFromLine(linn[cnt])
-  if(crtLine[1] == "GRID") {
+
+  # read nodes
+  if((crtLine <- getStringsFromLine(linn[cnt]))[1] == "GRID") {
     cnt = cnt + 1;
     i = 1;
     while(as.integer((crtLine <- getStringsFromLine(linn[cnt]))[1]) != -1) {
@@ -71,10 +27,12 @@ readMeshFileATLAS <- function(fileName) {
       cnt = cnt + 1;
     }
   }
+  #set the nodes list dimmensions
   nNodes <- length(nodes)
+
   cnt = cnt + 1;
-  crtLine <- getStringsFromLine(linn[cnt])
-  if(crtLine[1] == "CONC") {
+  #read elements
+  if((crtLine <- getStringsFromLine(linn[cnt]))[1] == "CONC") {
     cnt = cnt + 1;
     i = 1;
     while(as.integer((crtLine <- getStringsFromLine(linn[cnt]))[1]) != -1) {
@@ -87,9 +45,11 @@ readMeshFileATLAS <- function(fileName) {
       cnt = cnt + 1;
     }
   }
+  #set the elements list dimmension
   nElements <- length(elements)
   close(conn)
 
+  #return a mesh data object containing the dimmensions for nodes and elements list and the lists of nodes and elements
   mesh_data = list(dim = c(nNodes, nElements), nodes=nodes, elements=elements)
   return(mesh_data)
 }
