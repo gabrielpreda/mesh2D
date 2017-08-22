@@ -15,16 +15,25 @@ This package is using R6 (object oriented R allowing easy manipulation of nodes 
 To install this project you will need RStudio (version 1.0.1 or above recommended) and R (version 3.4 or above recommended). Also, you will need to install *plot3D* package
 
 ```
-install.packeges("plot3D")
+install.packages("plot3D")
 ```
 
 ### Installing
 
 Installation of the project is straightforward using RStudio. Alternativelly, after you build the package archive using RStudio, you can also install the package with the regular R command
 
-```
-install.packeges("mesh2D")
-```
+````
+install.packages("mesh2D")
+````
+
+Alternativelly, one can install the package directly from R Console, and without prior download of the package using the command
+
+
+````
+library(devtools)
+install_github("gabrielpreda/mesh2D")
+````
+
 
 ## Running the tests
 
