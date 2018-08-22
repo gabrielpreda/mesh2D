@@ -12,3 +12,7 @@ This package is used to parse a 2D mesh file in ATLAS format and plot the 2D mes
 \examples{
 plotMesh(readMeshFileATLAS("data/pre_geom2D.atl")
 }
+\figure{
+plot_mesh_example.png}{options: width="60\%" alt="Figure: plot_mesh_example.png"
+}
+
