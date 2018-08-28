@@ -41,15 +41,80 @@ To run the tests, you can load the project in RStudio and select *Build*/*Test P
 
 ## Example of usage
 
-The package includes a data file *data/pre_geom2D.atl*. This data file is used in the test package as well. To test the package functionality with this data file and inspect the resulted plot, here is a code snapshot to be used
+The package includes a data file *data/pre_geom2D.atl*. This data file is used in the test package as well. To test the package functionality with this data file and inspect the resulted plot, here is a code snapshot to be used.
+
+
+### Read a mesh file
 
 ````
 #read the data file and populate a mesh object 'dat'
 dat <- mesh2D::readMeshFileATLAS("data/pre_geom2D.atl")
+````
+
+### Dislay a mesh 
+
+#### Plot the mesh data (default usage).
+
+````
 #plot the mesh in a 2D polygon plot
 plotMesh(dat)
 
 ````
+
+The following image will be diplayed.
+
+![Plot a mesh data](man/figures/plot_mesh_example.png "Plot a mesh data")
+
+
+#### Plot the mesh data, with options.
+
+````
+#plot the mesh in a 2D polygon plot
+plotMesh(dat, domains, showEdges=TRUE, showElem=TRUE)
+````
+
+
+The following parameters are given:  
+
+* dat - mesh data;  
+* domains - list of material domains to be plot; if not specified, all the domains will be shown;  
+* showEdges - default is `TRUE` i.e. the edges of the elements will be shown;  
+* showElem - default is `TRUE` i.e. the solid  elements will be shown; a combination of showEdges = `FALSE` and showElem = `FALSE` will
+display only a wireframe for the elements in the shown material domains;  
+
+Few examples:  
+
+```` 
+# display only material domains 1 and 3 (coil and iron core)
+plotMesh(dat, c(1,3))
+````
+
+The result will be the following mesh displayed.
+
+![Plot material domains 1 and 3](man/figures/plot_mesh_1_and_3.png "Plot material domains 1 and 3")  
+
+
+```` 
+# display material domains 2 and 4 (air only) without edges
+plotMesh(dat, c(2,4), showEdges=FALSE)
+````
+
+The result will be the following mesh displayed.
+
+![Plot material domains 2 and 4, no edges](man/figures/plot_mesh_2_and_4_no_edges.png "Plot material domains 2 and 4, no edges")  
+
+
+
+```` 
+# display only wireframes
+plotMesh(dat, showEdges=FALSE, showElem=FALSE)
+````
+
+The result will be the following mesh displayed.
+
+![Plot wireframes](man/figures/plot_wireframes.png "Plot wireframes")  
+
+
 
 ## Authors
 
