@@ -57,8 +57,10 @@ readMeshFileATLAS <- function(fileName) {
 #
 # plot a 2D mesh, given a mesh_data list
 #
-plotMesh <- function(mesh_data)
+
+plotMesh <- function(mesh_data, domains=NA,showEdges=TRUE, showElem=TRUE)
 {
+
   elements <- mesh_data$elements
   nodes <- mesh_data$nodes
   nElements <- mesh_data$dim[2]
@@ -66,6 +68,11 @@ plotMesh <- function(mesh_data)
   x <- vector();  y <- vector();  colorMaterial <- vector()
 
   for(i in 1:nElements) {
+    mat = elements[[i]]$material
+    if(!is.na(domains))
+      colorMaterial[i] <- NA
+    else
+      colorMaterial[i]<- mat
     type <- elements[[i]]$type
     nV <- getVertexFromTypeATLAS(type)
     for(j in 1:nV) {
@@ -77,11 +84,26 @@ plotMesh <- function(mesh_data)
       x[cnt + nV + 1] <- NA
       y[cnt + nV + 1] <- NA
     }
-    colorMaterial[i] <- elements[[i]]$material
-
+    if(mat %in% domains)
+      colorMaterial[i] <- mat
     cnt = cnt + nV + 1;
   }
 
   library(plot3D)
-  polygon2D(x,y, border = "black", lwd = 1, colvar = colorMaterial, alpha= 0.2)
+  palette = c("red", "blue", "green", "magenta", "lightblue", "yellow", "cyan", "tomato", "gold", "darkblue")
+  if(!is.na(domains))
+    col = palette[min(domains):max(domains)]
+  else
+    col = palette
+
+  facets=FALSE
+  border = NA
+
+  if(showElem)
+    facets=TRUE
+  if(showEdges)
+    border = "white"
+
+  polygon2D(x,y, border = border, NAcol = "white", lwd = 0.5, colvar = colorMaterial, col=col, alpha= 1, facets = facets)
+
 }
