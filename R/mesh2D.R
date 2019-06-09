@@ -4,6 +4,8 @@
 #   For plot uses the package plot3D, the function polygon2D
 #
 
+if (!require("pacman")) install.packages("pacman")
+pacman::p_load("plot3D")
 
 # read a (2D) mesh file in ATLAS format, returns a mesh vector
 # with the structure: dim(nNodes, nElements), nodes, elements
@@ -89,7 +91,7 @@ plotMesh <- function(mesh_data, domains=NA,showEdges=TRUE, showElem=TRUE)
     cnt = cnt + nV + 1;
   }
 
-  library(plot3D)
+
   palette = c("red", "blue", "green", "magenta", "lightblue", "yellow", "cyan", "tomato", "gold", "darkblue")
   if(!is.na(domains))
     col = palette[min(domains):max(domains)]
