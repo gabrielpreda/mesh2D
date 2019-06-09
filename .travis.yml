@@ -1,17 +1,18 @@
+# .travis.yml
+#
+# https://docs.travis-ci.com/user/languages/r/
+
+
 language: r
-
-sudo: required
-
-env: _R_CHECK_CRAN_INCOMING_=FALSE
+sudo: false
+warnings_are_errors: false
+cache: packages
 
 r_packages:
   - R6
   - plot3D
   - devtools
   - covr
-
-r_github_packages:
-  - gabrielpreda/mesh2D
-
+  
 after_success:
   - Rscript -e 'library(covr);codecov()'
