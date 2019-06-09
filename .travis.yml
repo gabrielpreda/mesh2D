@@ -9,7 +9,7 @@ r_packages:
   - devtools
 
 r_github_packages:
-  - codecov/example-r
+  - gabrielpreda/mesh2D
 
 after_success:
   - Rscript -e 'library(covr);codecov()'
