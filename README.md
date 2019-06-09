@@ -1,5 +1,7 @@
 # mesh2D
 
+[![Build Status](https://img.shields.io/travis/gabrielpreda/mesh2D/master.svg)](https://travis-ci.com/gabrielpreda/mesh2D)
+
 Parse a 2D mesh file and plot the data
 
 ## Getting Started
