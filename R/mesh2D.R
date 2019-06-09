@@ -4,8 +4,7 @@
 #   For plot uses the package plot3D, the function polygon2D
 #
 
-if (!require("pacman")) install.packages("pacman")
-pacman::p_load("plot3D")
+library(plot3D)
 
 # read a (2D) mesh file in ATLAS format, returns a mesh vector
 # with the structure: dim(nNodes, nElements), nodes, elements

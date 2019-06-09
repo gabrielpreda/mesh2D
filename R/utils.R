@@ -1,5 +1,4 @@
-if (!require("pacman")) install.packages("pacman")
-pacman::p_load("R6")
+library(R6)
 
 cElement <- R6Class("cElement",
                     public=list(

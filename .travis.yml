@@ -5,8 +5,10 @@ sudo: required
 env: _R_CHECK_CRAN_INCOMING_=FALSE
 
 r_packages:
-  - covr
+  - R6
+  - plot3D
   - devtools
+  - covr
 
 r_github_packages:
   - gabrielpreda/mesh2D
