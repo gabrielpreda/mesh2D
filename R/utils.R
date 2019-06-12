@@ -1,4 +1,4 @@
-#@library(R6)
+library(R6)
 
 cElement <- R6Class("cElement",
                     public=list(
