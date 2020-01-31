@@ -11,7 +11,7 @@ Description: Package mesh2D loads a 2D mesh file in universal ATLAS text format 
     library(mesh2D)
     ## Read one data file; this file is provided as an example
     dat <- readMeshFileATLAS("data//pre_geom2D.atl")
-    ## Plot the data imported using readMeshFileATLAS
+    ## Plot the data imported using readMeshFileATLAS format
     plotMesh(dat)   
 License: Apache License (== 2.0)
 Encoding: UTF-8
